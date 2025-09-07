@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuth } from "@/hooks/useAuth";
 import LoginForm from "@/components/LoginForm";
 

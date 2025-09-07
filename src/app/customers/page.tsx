@@ -29,7 +29,7 @@ export default function CustomersPage() {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const { data, error, count } = await supabase
+      const { data, count } = await supabase
         .from('customers')
         .select('*', { count: 'exact' })
         .order('created_at', { ascending: false });

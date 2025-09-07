@@ -1,15 +1,17 @@
+"use client";
 import { useState } from "react";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+// createUserWithEmailAndPasswordを削除
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
-type TabType = "login" | "register" | "reset";
+// TabTypeから "register" を削除
+type TabType = "login" | "reset";
 
 export default function LoginForm({ onLogin }: { onLogin?: () => void }) {
   const [tab, setTab] = useState<TabType>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerConfirm, setRegisterConfirm] = useState("");
+  // 新規登録用のStateを削除
   const [resetEmail, setResetEmail] = useState("");
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
@@ -21,27 +23,16 @@ export default function LoginForm({ onLogin }: { onLogin?: () => void }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       if (onLogin) onLogin();
-    } catch (err: any) {
-      setError("ログインに失敗しました: " + err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError("ログインに失敗しました: " + err.message);
+      } else {
+        setError("ログインに失敗しました: 不明なエラー");
+      }
     }
   };
 
-  // 新規登録処理
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(""); setInfo("");
-    if (registerPassword !== registerConfirm) {
-      setError("パスワードが一致しません。");
-      return;
-    }
-    try {
-      await createUserWithEmailAndPassword(auth, email, registerPassword);
-      setInfo("ユーザー登録が完了しました。ログインしてください。");
-      setTab("login");
-    } catch (err: any) {
-      setError("登録に失敗しました: " + err.message);
-    }
-  };
+  // 新規登録処理(handleRegister)を削除
 
   // パスワードリセット処理
   const handleReset = async (e: React.FormEvent) => {
@@ -50,8 +41,12 @@ export default function LoginForm({ onLogin }: { onLogin?: () => void }) {
     try {
       await sendPasswordResetEmail(auth, resetEmail);
       setInfo("パスワード再設定メールを送信しました。メールをご確認ください。");
-    } catch (err: any) {
-      setError("再設定メール送信に失敗しました: " + err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError("再設定メール送信に失敗しました: " + err.message);
+      } else {
+        setError("再設定メール送信に失敗しました: 不明なエラー");
+      }
     }
   };
 
@@ -65,12 +60,7 @@ export default function LoginForm({ onLogin }: { onLogin?: () => void }) {
         >
           ログイン
         </button>
-        <button
-          className={`flex-1 py-2 font-semibold ${tab === "register" ? "text-blue-700 border-b-2 border-blue-600" : "text-gray-400"}`}
-          onClick={() => { setTab("register"); setError(""); setInfo(""); }}
-        >
-          新規登録
-        </button>
+        {/* 新規登録タブのボタンを削除 */}
         <button
           className={`flex-1 py-2 font-semibold ${tab === "reset" ? "text-blue-700 border-b-2 border-blue-600" : "text-gray-400"}`}
           onClick={() => { setTab("reset"); setError(""); setInfo(""); }}
@@ -106,36 +96,7 @@ export default function LoginForm({ onLogin }: { onLogin?: () => void }) {
         </form>
       )}
 
-      {/* 新規登録フォーム */}
-      {tab === "register" && (
-        <form onSubmit={handleRegister}>
-          <input
-            type="email"
-            placeholder="メールアドレス"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            className="w-full mb-2 px-3 py-2 border rounded focus:ring-2 focus:ring-blue-300"
-            required
-          />
-          <input
-            type="password"
-            placeholder="パスワード（6文字以上）"
-            value={registerPassword}
-            onChange={e => setRegisterPassword(e.target.value)}
-            className="w-full mb-2 px-3 py-2 border rounded focus:ring-2 focus:ring-blue-300"
-            required
-          />
-          <input
-            type="password"
-            placeholder="パスワード（確認）"
-            value={registerConfirm}
-            onChange={e => setRegisterConfirm(e.target.value)}
-            className="w-full mb-4 px-3 py-2 border rounded focus:ring-2 focus:ring-blue-300"
-            required
-          />
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">登録する</button>
-        </form>
-      )}
+      {/* 新規登録フォームを削除 */}
 
       {/* パスワード再設定フォーム */}
       {tab === "reset" && (

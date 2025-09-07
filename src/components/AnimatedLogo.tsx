@@ -19,7 +19,7 @@ export default function AnimatedLogo() {
       
       {/* システム名 */}
       <span className="font-bold text-blue-700 hover:underline">
-        YA-管理システム
+        Yamato Basic
       </span>
     </div>
   );

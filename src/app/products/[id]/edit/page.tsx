@@ -26,6 +26,7 @@ export default function EditProductPage() {
   const { id } = useParams(); // URLから商品IDを取得
   const { register, handleSubmit, formState: { errors }, setValue } = useForm<ProductFormData>();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>(''); // 追加
 
   useEffect(() => {
     if (!id) return;
@@ -57,19 +58,18 @@ export default function EditProductPage() {
   }, [id, setValue]);
 
   const onSubmit = async (data: ProductFormData) => {
-    // 送信するデータを安全な形に整形する
     const dataToUpdate = {
-        ...data,
-        rental_price_monthly: data.rental_price_monthly ? parseFloat(data.rental_price_monthly as any) : null,
-        sales_price: data.sales_price ? parseFloat(data.sales_price as any) : null,
-        cost_price: data.cost_price ? parseFloat(data.cost_price as any) : null,
+      ...data,
+      rental_price_monthly: data.rental_price_monthly ? Number(data.rental_price_monthly) : null,
+      sales_price: data.sales_price ? Number(data.sales_price) : null,
+      cost_price: data.cost_price ? Number(data.cost_price) : null,
     };
 
-    // テキストフィールドが空文字の場合もnullに変換する
     (Object.keys(dataToUpdate) as Array<keyof ProductFormData>).forEach(key => {
-        if (dataToUpdate[key] === '') {
-            (dataToUpdate as any)[key] = null;
-        }
+      if (dataToUpdate[key] === '') {
+        // (dataToUpdate as any)[key] = null;
+        (dataToUpdate as Record<string, unknown>)[key] = null;
+      }
     });
 
     try {
@@ -89,9 +89,12 @@ export default function EditProductPage() {
         router.push('/products'); // 一覧ページに戻る
         router.refresh();
       }
-    } catch (error) {
-      console.error('商品更新エラー:', error);
-      alert('エラーが発生しました。');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('不明なエラーが発生しました');
+      }
     }
   };
   
@@ -102,6 +105,7 @@ export default function EditProductPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">商品情報編集</h1>
+      {error && <div className="text-red-500 mb-4">{error}</div>}
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { supabase } from '@/lib/supabase';
 import { ProjectHistory as ProjectHistoryType } from '@/types/project';
@@ -23,12 +23,8 @@ export default function ProjectHistory({ projectId }: ProjectHistoryProps) {
   
   const { register, handleSubmit, reset } = useForm<HistoryFormData>();
 
-  useEffect(() => {
-    fetchHistory();
-  }, [projectId]);
-
-  const fetchHistory = async () => {
-    const { data, error } = await supabase
+  const fetchHistory = useCallback(async () => {
+    const { data } = await supabase
       .from('project_history')
       .select('*')
       .eq('project_id', projectId)
@@ -36,7 +32,11 @@ export default function ProjectHistory({ projectId }: ProjectHistoryProps) {
 
     if (data) setHistory(data);
     setLoading(false);
-  };
+  }, [projectId]);
+
+  useEffect(() => {
+    fetchHistory();
+  }, [fetchHistory]);
 
   const onSubmit = async (formData: HistoryFormData) => {
     const newHistoryEntry = {
@@ -45,7 +45,7 @@ export default function ProjectHistory({ projectId }: ProjectHistoryProps) {
       input_by: '（現在のユーザー）' // Auth機能と連携して設定
     };
 
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('project_history')
       .insert([newHistoryEntry])
       .select();
@@ -54,7 +54,7 @@ export default function ProjectHistory({ projectId }: ProjectHistoryProps) {
       setHistory([data[0], ...history]);
       reset(); // フォームをリセット
     } else {
-      console.error('履歴追加エラー:', error);
+      console.error('履歴追加エラー:');
     }
   };
 

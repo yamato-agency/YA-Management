@@ -22,7 +22,7 @@ interface ProductFormData {
 
 export default function NewProductPage() {
   const router = useRouter();
-  const { register, handleSubmit, formState: { errors } } = useForm<ProductFormData>();
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<ProductFormData>();
 
 const onSubmit = async (data: ProductFormData) => {
   // 送信するデータを安全な形に整形する
@@ -30,15 +30,16 @@ const onSubmit = async (data: ProductFormData) => {
     ...data,
     // 数値項目が空、または無効な場合はnullに設定する
     // parseFloatは文字列を浮動小数点数に変換する。無効な場合はNaNを返す。
-    rental_price_monthly: isNaN(parseFloat(data.rental_price_monthly as any)) ? null : parseFloat(data.rental_price_monthly as any),
-    sales_price: isNaN(parseFloat(data.sales_price as any)) ? null : parseFloat(data.sales_price as any),
-    cost_price: isNaN(parseFloat(data.cost_price as any)) ? null : parseFloat(data.cost_price as any),
+    rental_price_monthly: isNaN(Number(data.rental_price_monthly)) ? null : Number(data.rental_price_monthly),
+    sales_price: isNaN(Number(data.sales_price)) ? null : Number(data.sales_price),
+    cost_price: isNaN(Number(data.cost_price)) ? null : Number(data.cost_price),
   };
 
   // テキストフィールドが空文字の場合もnullに変換する
   (Object.keys(dataToInsert) as Array<keyof ProductFormData>).forEach(key => {
     if (dataToInsert[key] === '') {
-      (dataToInsert as any)[key] = null;
+      // (dataToInsert as any)[key] = null;
+      (dataToInsert as Record<string, unknown>)[key] = null;
     }
   });
 
@@ -61,10 +62,12 @@ const onSubmit = async (data: ProductFormData) => {
       router.push('/products');
       router.refresh();
     }
-  } catch (err) {
-    // 予期せぬエラー
-    console.error('予期せぬエラー:', err);
-    alert('予期せぬエラーが発生しました。');
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      setError('product_code', { type: 'manual', message: error.message });
+    } else {
+      setError('product_code', { type: 'manual', message: '不明なエラーが発生しました' });
+    }
   }
 };
 

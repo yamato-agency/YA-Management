@@ -22,7 +22,6 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
     fetchProducts();
@@ -48,7 +47,7 @@ export default function ProductsPage() {
     if (searchTerm) {
       query = query.or(`product_name.ilike.%${searchTerm}%,product_code.ilike.%${searchTerm}%,model_number.ilike.%${searchTerm}%`);
     }
-    const { data, error } = await query.order('id', { ascending: true });
+    const { data } = await query.order('id', { ascending: true });
     if (data) setProducts(data);
     setLoading(false);
   };
