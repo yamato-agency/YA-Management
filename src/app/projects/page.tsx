@@ -258,7 +258,7 @@ export default function ProjectsPage() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full whitespace-nowrap">
+          <table className="min-w-full table-auto">
             <thead className="bg-gray-50">
               <tr>
                 {/* --- 固定表示 --- */}
@@ -411,34 +411,34 @@ export default function ProjectsPage() {
                         <td className="px-4 py-4 text-sm font-medium sticky left-0 bg-white"><div className='flex gap-4'><button onClick={() => handleEditClick(project)} className="text-blue-600 hover:text-blue-900" title="編集"><PencilIcon className='h-5 w-5'/></button><Link href={`/projects/new?clone=${project.id}`} className="text-gray-500 hover:text-gray-800" title="複製">複製</Link></div></td>
                         <td className="px-4 py-4 text-sm font-medium text-gray-900 sticky left-32 bg-white">{project.pj_number}</td>
                         <td className="px-4 py-4 text-sm"><span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{project.contract_status}</span></td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.project_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.project_date}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">{project.sales_person}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.dealer_name}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.dealer_contact}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.general_contractor}</td>
-                        <td className="px-4 py-4 text-sm text-gray-800">{project.site_name}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.dealer_name}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.dealer_contact}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.general_contractor}</td>
+                        <td className="px-4 py-4 text-sm text-gray-800 whitespace-normal break-words">{project.site_name}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">{project.installation_location}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.installation_address}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.installation_address}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">{project.transaction_type}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">{project.product_category}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">{project.stb}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.main_product_name}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.product_spec}</td>
-                        {Array.from({ length: 10 }).map((_, i) => (<td key={i} className="px-4 py-4 text-sm text-gray-500">{project[`accessory_${i + 1}` as keyof Project] as string}</td>))}
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.shipping_address}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.installation_partner}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.removal_partner}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.contract_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.setup_completion_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.shipping_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.installation_request_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.installation_scheduled_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.installation_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.removal_request_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.removal_scheduled_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.removal_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500">{project.removal_inspection_date}</td>
-                        <td className="px-4 py-4 text-sm text-gray-500"><div className="w-40 truncate" title={project.memo || ''}>{project.memo}</div></td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.main_product_name}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.product_spec}</td>
+                        {Array.from({ length: 10 }).map((_, i) => (<td key={i} className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project[`accessory_${i + 1}` as keyof Project] as string}</td>))}
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.shipping_address}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.installation_partner}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.removal_partner}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.contract_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.setup_completion_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.shipping_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.installation_request_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.installation_scheduled_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.installation_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.removal_request_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.removal_scheduled_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.removal_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">{project.removal_inspection_date}</td>
+                        <td className="px-4 py-4 text-sm text-gray-500 whitespace-normal break-words">{project.memo}</td>
                         <td className="px-4 py-4 text-sm text-gray-500">
                           {project.quote_file_url
                             ? <a href={project.quote_file_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">{project.quote_file_name || 'ダウンロード'}</a>
