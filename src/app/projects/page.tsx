@@ -79,12 +79,7 @@ export default function ProjectsPage() {
       setTotalCount(count || 0);
     };
     fetchTotalCount();
-              <a
-                href="/projects/new"
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-              >
-                新規プロジェクト作成
-              </a>
+  }, [fetchProjects, initialFilters]);
 
   // --- 編集関連のハンドラー ---
   const handleEditClick = (project: Project) => {
@@ -260,9 +255,9 @@ export default function ProjectsPage() {
              <div className="text-sm text-gray-600">
                全 {totalCount} 件中 {filteredCount} 件表示
              </div>
-             <Link href="/projects/new" className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-md text-sm font-semibold shadow hover:bg-green-700">
+             <Link href="/projects/new" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-semibold shadow hover:bg-blue-700">
                 <PlusCircleIcon className="h-5 w-5" />
-                新規作成
+                新規プロジェクト作成
              </Link>
           </div>
         </div>
