@@ -79,7 +79,12 @@ export default function ProjectsPage() {
       setTotalCount(count || 0);
     };
     fetchTotalCount();
-  }, [fetchProjects, initialFilters]);
+              <a
+                href="/projects/new"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
+                新規プロジェクト作成
+              </a>
 
   // --- 編集関連のハンドラー ---
   const handleEditClick = (project: Project) => {

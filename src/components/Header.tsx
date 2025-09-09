@@ -63,10 +63,6 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-6">
             <nav className="flex items-center space-x-1">{navLinks}</nav>
             <div className="flex items-center space-x-4">
-              <Link href="/projects/new" className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 shadow-sm">
-                <PlusCircleIcon className="h-5 w-5 mr-2" />
-                新規プロジェクト作成
-              </Link>
               <div className="h-6 w-px bg-gray-200"></div>
               <div className="flex items-center">
                 <UserCircleIcon className="h-6 w-6 mr-2 text-gray-500" />
@@ -110,17 +106,13 @@ export default function Header() {
               </Link>
             </nav>
             <div className="border-t border-gray-200 pt-4 space-y-4">
-              <Link href="/projects/new" className="flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white rounded-md text-base font-medium hover:bg-blue-700 shadow-sm">
-                <PlusCircleIcon className="h-6 w-6 mr-3" />
-                新規プロジェクト作成
-              </Link>
               <div className="flex items-center px-4 py-3 bg-gray-50 rounded-md">
                 <UserCircleIcon className="h-6 w-6 mr-2 text-gray-500" />
-                <span className="text-sm font-medium text-gray-700">{user.displayName || user.email}</span>
+                <span className="text-base font-medium text-gray-700">{user.displayName || user.email}</span>
               </div>
-              <button onClick={handleLogout} className="flex items-center w-full text-left text-gray-500 hover:text-red-600 p-2 rounded-md">
-                <ArrowRightOnRectangleIcon className="h-5 w-5 mr-2" />
-                ログアウト
+              <button onClick={handleLogout} className="flex items-center text-gray-500 hover:text-red-600 p-2 rounded-md w-full justify-center" title="ログアウト">
+                <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                <span className="ml-2">ログアウト</span>
               </button>
             </div>
           </div>
