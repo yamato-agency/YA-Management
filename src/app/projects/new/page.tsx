@@ -221,7 +221,7 @@ function NewProjectPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* --- 基本情報 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">基本情報</h2>
+          <h2 className="section-title">基本情報</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -246,7 +246,7 @@ function NewProjectPage() {
 
         {/* --- 担当・取引先情報 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">担当・取引先情報</h2>
+          <h2 className="section-title">担当・取引先情報</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -275,7 +275,7 @@ function NewProjectPage() {
         
         {/* --- 現場情報 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">現場情報</h2>
+          <h2 className="section-title">現場情報</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -300,7 +300,7 @@ function NewProjectPage() {
 
         {/* --- 商品カテゴリとSTB --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">商品カテゴリ・STB</h2>
+          <h2 className="section-title">商品カテゴリ・STB</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">
@@ -331,7 +331,7 @@ function NewProjectPage() {
 
         {/* --- 商品詳細情報 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">商品詳細情報</h2>
+          <h2 className="section-title">商品詳細情報</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">本体商品名</label>
@@ -355,7 +355,7 @@ function NewProjectPage() {
         
         {/* --- パートナー・配送先情報 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">パートナー・配送先情報</h2>
+          <h2 className="section-title">パートナー・配送先情報</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium mb-2">設置時パートナー</label>
@@ -374,7 +374,7 @@ function NewProjectPage() {
 
         {/* --- 日付関連 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">関連日付</h2>
+          <h2 className="section-title">関連日付</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div><label className="block text-sm font-medium mb-2">成約日</label><input type="date" {...register('contract_date')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"/></div>
             <div><label className="block text-sm font-medium mb-2">設置予定日</label><input type="date" {...register('installation_scheduled_date')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"/></div>
@@ -392,7 +392,7 @@ function NewProjectPage() {
         
         {/* --- ファイルアップロード --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">関連ファイル</h2>
+          <h2 className="section-title">関連ファイル</h2>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium mb-2">成約時見積書</label>
@@ -409,7 +409,7 @@ function NewProjectPage() {
 
         {/* --- メモ --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-6 border-b pb-4">メモ</h2>
+          <h2 className="section-title">メモ</h2>
           <div>
             <textarea {...register('memo')} rows={5} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50" placeholder="特記事項など"></textarea>
           </div>

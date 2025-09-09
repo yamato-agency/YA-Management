@@ -188,6 +188,10 @@ export default function ProjectsPage() {
 
       {/* 検索フォームセクション */}
       <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl mb-8 shadow-sm">
+        <h2 className="text-lg font-semibold text-blue-700 mb-4 flex items-center">
+          <MagnifyingGlassIcon className="h-5 w-5 mr-2" />
+          プロジェクト検索
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* PJ番号 */}
           <div>

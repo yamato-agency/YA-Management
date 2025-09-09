@@ -25,6 +25,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* セクションタイトルのコントラスト改善 */
+.section-title {
+  color: #1a1a1a !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 0.75rem !important;
+  border-bottom: 2px solid #e5e7eb !important;
+  letter-spacing: 0.01em !important;
+}
+
 /* フォームスタイルの全体的な改善 */
 label, .form-label, .select-label {
   color: #000 !important;
