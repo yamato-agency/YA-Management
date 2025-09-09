@@ -188,7 +188,7 @@ export default function ProjectsPage() {
 
       {/* 検索フォームセクション */}
       <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl mb-8 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* PJ番号 */}
           <div>
             <label className="block text-sm font-medium mb-1">PJ番号</label>
@@ -231,12 +231,12 @@ export default function ProjectsPage() {
             </div>
           </div>
         </div>
-        <div className="flex justify-end gap-4 mt-6">
-          <button onClick={handleReset} className="flex items-center gap-2 px-4 py-2 border border-gray-400 text-gray-700 rounded-md text-sm hover:bg-gray-100">
+        <div className="flex flex-col sm:flex-row justify-end gap-4 mt-6">
+          <button onClick={handleReset} className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-400 text-gray-700 rounded-md text-sm hover:bg-gray-100">
             <ArrowPathIcon className="h-4 w-4" />
             リセット
           </button>
-          <button onClick={handleSearch} className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-md text-sm font-semibold shadow hover:bg-blue-700">
+          <button onClick={handleSearch} className="flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-md text-sm font-semibold shadow hover:bg-blue-700">
             <MagnifyingGlassIcon className="h-5 w-5" />
             検索
           </button>
@@ -245,7 +245,7 @@ export default function ProjectsPage() {
 
       {/* テーブルセクション */}
       <div className="bg-white border border-blue-100 shadow-lg rounded-xl mb-8 p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
           <h2 className="text-lg font-semibold text-blue-600">プロジェクト一覧</h2>
           <div className='flex items-center gap-4'>
              <div className="text-sm text-gray-600">
@@ -258,7 +258,7 @@ export default function ProjectsPage() {
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full table-auto">
+          <table className="min-w-full">
             <thead className="bg-gray-50">
               <tr>
                 {/* --- 固定表示 --- */}
@@ -328,20 +328,27 @@ export default function ProjectsPage() {
                     {editingId === project.id ? (
                       // --- 編集モード ---
                       <>
-                        <td className="px-4 py-1 text-sm font-medium sticky left-0 bg-white">
-                          <div className='flex gap-4'>
+                        <td className="px-4 py-1 text-sm font-medium sticky left-0 bg-white z-10">
+                          <div className="action-group">
                             {typeof project.id === 'number' && (() => {
                               const id = project.id;
                               return (
                                 <button
                                   onClick={() => handleSaveClick(id)}
-                                  className="text-green-600"
+                                  className="save text-green-600 hover:text-green-700 transition-colors duration-200"
+                                  title="保存"
                                 >
                                   <CheckIcon className='h-5 w-5'/>
                                 </button>
                             );
                             })()}
-                            <button onClick={handleCancelClick} className="text-gray-500"><XMarkIcon className='h-5 w-5'/></button>
+                            <button 
+                              onClick={handleCancelClick} 
+                              className="cancel text-gray-500 hover:text-red-600 transition-colors duration-200"
+                              title="キャンセル"
+                            >
+                              <XMarkIcon className='h-5 w-5'/>
+                            </button>
                           </div>
                         </td>
                         <td className="px-1 py-1 sticky left-32 bg-white"><input type="text" name="pj_number" value={editFormData.pj_number || ''} onChange={handleEditFormChange} className="w-40 text-sm border-gray-300 rounded-md" /></td>

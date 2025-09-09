@@ -24,3 +24,126 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* フォームスタイルの全体的な改善 */
+label, .form-label, .select-label {
+  color: #000 !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.25rem !important;
+  display: block !important;
+}
+
+/* 入力フィールドの共通スタイル */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-color: #999 !important;
+  border-width: 1px !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 0.75rem !important;
+  width: 100% !important;
+  color: #000 !important;
+  background-color: #fff !important;
+  transition: border-color 0.15s ease-in-out !important;
+}
+
+/* プレースホルダーのスタイル */
+input::placeholder,
+textarea::placeholder {
+  color: #666 !important;
+  opacity: 1 !important;
+}
+
+/* フォーカス時のスタイル */
+input:focus:not([type="checkbox"]):not([type="radio"]),
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* エラー状態のスタイル */
+.error input,
+.error select,
+.error textarea,
+input.error,
+select.error,
+textarea.error {
+  border-color: #dc2626 !important;
+  background-color: #fff !important;
+}
+
+/* フォームグループのレスポンシブ対応 */
+.form-group {
+  margin-bottom: 1rem !important;
+}
+
+/* スマートフォン向けのレスポンシブ対応 */
+@media (max-width: 640px) {
+  .form-group {
+    margin-bottom: 1.25rem !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    width: 100% !important;
+    max-width: none !important;
+    font-size: 16px !important; /* iOSでズームを防ぐため */
+  }
+
+  /* ラベルのスタイル調整 */
+  label, .form-label, .select-label {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+}
+
+/* テーブルスタイルの改善 */
+table tbody tr {
+  transition: background-color 0.2s ease-in-out !important;
+}
+
+table tbody tr:hover {
+  background-color: #f0f9f0 !important; /* 薄い淡いグリーン */
+  cursor: default;
+}
+
+/* クリック可能なセルのスタイル */
+table tbody td a,
+table tbody td button,
+table tbody td[role="button"],
+table tbody td.clickable {
+  cursor: pointer !important;
+}
+
+/* 固定列の背景色をホバー時にも適用 */
+table tbody tr:hover td.sticky {
+  background-color: #f0f9f0 !important;
+}
+
+/* リンクやボタンのホバー効果 */
+table tbody td a:hover,
+table tbody td button:hover {
+  opacity: 0.8;
+}
+
+/* アクション列のボタングループ */
+table tbody td .action-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ボタンのホバー効果 */
+table tbody td button.edit:hover {
+  color: #2563eb !important; /* blue-600 */
+}
+
+table tbody td button.save:hover {
+  color: #16a34a !important; /* green-600 */
+}
+
+table tbody td button.cancel:hover {
+  color: #dc2626 !important; /* red-600 */
+}

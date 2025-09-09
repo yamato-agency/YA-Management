@@ -343,7 +343,7 @@ function NewProjectPage() {
             </div>
           </div>
           <h3 className="text-md font-semibold mt-6 mb-4 border-t pt-4">付属品</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i}>
                 <label className="block text-sm font-medium mb-2">{`付属品名 ${i + 1}`}</label>
@@ -375,7 +375,7 @@ function NewProjectPage() {
         {/* --- 日付関連 --- */}
         <div className="p-6 border rounded-lg bg-white shadow-sm">
           <h2 className="text-lg font-semibold mb-6 border-b pb-4">関連日付</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div><label className="block text-sm font-medium mb-2">成約日</label><input type="date" {...register('contract_date')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"/></div>
             <div><label className="block text-sm font-medium mb-2">設置予定日</label><input type="date" {...register('installation_scheduled_date')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"/></div>
             <div><label className="block text-sm font-medium mb-2">設定作業完了日</label><input type="date" {...register('setup_completion_date')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"/></div>
@@ -416,17 +416,17 @@ function NewProjectPage() {
         </div>
 
         {/* --- 操作ボタン --- */}
-        <div className="flex justify-between items-center mt-10 pt-6 border-t">
-          <button type="button" onClick={() => router.back()} className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100">
+        <div className="flex flex-col sm:flex-row justify-between items-center mt-10 pt-6 border-t">
+          <button type="button" onClick={() => router.back()} className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 w-full sm:w-auto mb-2 sm:mb-0">
             キャンセル
           </button>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 w-full sm:w-auto">
             {clonedProject && (
-              <button type="button" onClick={() => { reset(); setClonedProject(null); router.push('/projects/new'); }} className="px-6 py-3 text-sm border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">
+              <button type="button" onClick={() => { reset(); setClonedProject(null); router.push('/projects/new'); }} className="px-6 py-3 text-sm border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 w-full">
                 新規作成に切り替え
               </button>
             )}
-            <button type="submit" className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700" disabled={isCloning}>
+            <button type="submit" className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 w-full" disabled={isCloning}>
               {isCloning ? '読み込み中...' : '確認画面へ'}
             </button>
           </div>
