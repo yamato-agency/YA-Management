@@ -191,7 +191,7 @@ function NewProjectPage() {
         <div className="flex justify-end gap-4 mt-8">
           <button
             type="button"
-            className="px-6 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100"
+            className="cancel-btn"
             onClick={() => setShowConfirmation(false)}
           >
             戻る
@@ -342,11 +342,11 @@ function NewProjectPage() {
               <input type="text" {...register('product_spec')} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="例: Dazhi 6*4 P4" />
             </div>
           </div>
-          <h3 className="text-md font-semibold mt-6 mb-4 border-t pt-4">付属品</h3>
+          <h3 className="text-md font-semibold mt-6 mb-4 border-t pt-4 accessory-label">付属品</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
             {Array.from({ length: 10 }).map((_, i) => (
               <div key={i}>
-                <label className="block text-sm font-medium mb-2">{`付属品名 ${i + 1}`}</label>
+                <label className="accessory-label block text-sm font-medium mb-2">{`付属品名 ${i + 1}`}</label>
                 <input type="text" {...register(`accessory_${i + 1}` as keyof Project)} className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50" />
               </div>
             ))}
